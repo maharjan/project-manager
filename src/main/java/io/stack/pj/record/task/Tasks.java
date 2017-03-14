@@ -1,11 +1,12 @@
 package io.stack.pj.record.task;
 
-import io.stack.pj.project.Projects;
+import io.stack.pj.project.impl.Projects;
 import io.stack.pj.shared.AbstractEntity;
-import io.stack.pj.user.Users;
-import lombok.Data;
+import io.stack.pj.user.impl.Users;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedBy;
 
 import javax.persistence.*;
@@ -18,7 +19,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Data
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public class Tasks extends AbstractEntity {
 
     @ManyToOne
@@ -43,6 +45,5 @@ public class Tasks extends AbstractEntity {
     private Users createdBy;
 
     @ManyToOne
-    @Column(nullable = true)
     private Users owner;
 }

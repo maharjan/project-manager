@@ -1,5 +1,7 @@
-package io.stack.pj.user;
+package io.stack.pj.user.impl;
 
+import io.stack.pj.user.UserDao;
+import io.stack.pj.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

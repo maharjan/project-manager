@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    driverClassName: org.hsqldb.jdbc.JDBCDriver
+    url: jdbc:hsqldb:file:${catalina.base}/hsqldb/project_manager_db;DB_CLOSE_ON_EXIT=FALSE
+    username: SA
+    password:

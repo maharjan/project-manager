@@ -1,9 +1,11 @@
-package io.stack.pj.project;
+package io.stack.pj.project.impl;
 
+import io.stack.pj.project.ProjectStatus;
 import io.stack.pj.shared.AbstractEntity;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +20,8 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Data
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public class Projects extends AbstractEntity {
 
     @Column(nullable = false)
@@ -31,6 +34,5 @@ public class Projects extends AbstractEntity {
     private String url;
 
     @Enumerated(EnumType.STRING)
-    private ProjectStatus status;
-
+    private ProjectStatus status=ProjectStatus.ACTIVE;
 }

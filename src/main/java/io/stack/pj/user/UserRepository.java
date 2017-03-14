@@ -1,6 +1,7 @@
 package io.stack.pj.user;
 
 import io.stack.pj.shared.CustomRepository;
+import io.stack.pj.user.impl.Users;
 
 /**
  * @author Prajin Maharjan

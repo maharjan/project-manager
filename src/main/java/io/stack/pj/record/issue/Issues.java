@@ -1,7 +1,7 @@
 package io.stack.pj.record.issue;
 
 import io.stack.pj.shared.AbstractEntity;
-import io.stack.pj.user.Users;
+import io.stack.pj.user.impl.Users;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;

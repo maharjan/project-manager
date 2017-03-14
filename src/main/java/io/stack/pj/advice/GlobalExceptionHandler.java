@@ -19,9 +19,6 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    /**
-     * 405
-     */
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ErrorResponse> methodNotAllowed(final HttpRequestMethodNotSupportedException hrm, final HttpServletRequest
             request) {
@@ -33,7 +30,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity(new ErrorResponse("Sorry, your request failed. Remarks: Method not allowed.", null), HttpStatus.METHOD_NOT_ALLOWED);
     }
 
-
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<ErrorResponse> missingRequestParameter(final MissingServletRequestParameterException msrp,
                                                                  final HttpServletRequest request) {
@@ -42,9 +38,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErrorResponse(msrp.getMessage(), request.getRequestURI()), status);
     }
 
-    /**
-     * 500
-     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> uncheckedError(final Exception exp, final HttpServletRequest request) {
         log.error("Error ", exp);

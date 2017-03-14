@@ -1,10 +1,11 @@
 package io.stack.pj.record.task;
 
 import io.stack.pj.shared.AbstractEntity;
-import io.stack.pj.user.Users;
-import lombok.Data;
+import io.stack.pj.user.impl.Users;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -16,7 +17,8 @@ import javax.persistence.ManyToOne;
 @Setter
 @Getter
 @Entity
-@Data
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public class TaskHistory extends AbstractEntity{
 
     @ManyToOne

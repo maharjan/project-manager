@@ -1,9 +1,10 @@
 package io.stack.pj.record.issue;
 
 import io.stack.pj.shared.AbstractEntity;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,7 +17,8 @@ import javax.persistence.ManyToOne;
 @Setter
 @Getter
 @Entity
-@Data
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public class IssueHistory extends AbstractEntity{
 
     @ManyToOne

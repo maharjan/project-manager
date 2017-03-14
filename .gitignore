@@ -3,3 +3,7 @@ gradlew
 gradlew.bat
 .idea/
 build/
+*.iml
+*.ipr
+*.iws
+*.yml

@@ -1,9 +1,12 @@
-package io.stack.pj.user;
+package io.stack.pj.user.impl;
 
 import io.stack.pj.shared.AbstractEntity;
-import lombok.Data;
+import io.stack.pj.user.Roles;
+import io.stack.pj.user.UserStatus;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +20,8 @@ import javax.persistence.Enumerated;
 @Setter
 @Getter
 @Entity
-@Data
+@ToString
+@EqualsAndHashCode(callSuper = false)
 public class Users extends AbstractEntity {
 
     @Column(unique = true, nullable = false)

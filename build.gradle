@@ -51,7 +51,8 @@ dependencies {
             "ch.qos.logback:logback-core:$logbackClassicVersion",
             "org.projectlombok:lombok:$lombokVersion",
             "io.springfox:springfox-swagger2:$swaggerVersion",
-            "io.springfox:springfox-swagger-ui:$swaggerVersion"
+            "io.springfox:springfox-swagger-ui:$swaggerVersion",
+            "org.hsqldb:hsqldb:$hsqldbVersion"
 }
 
 idea {
@@ -107,6 +108,13 @@ war {
 
 javadoc {
     failOnError = false
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
 }
 
 sonarqube {

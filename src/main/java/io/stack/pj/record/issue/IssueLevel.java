@@ -7,5 +7,6 @@ import java.io.Serializable;
  * @since 1.0
  */
 public enum IssueLevel implements Serializable {
+
     NORMAL, HOT, SEVERE;
 }
