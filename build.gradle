@@ -37,9 +37,10 @@ targetCompatibility = JavaVersion.VERSION_1_8
 repositories {
     mavenLocal()
     mavenCentral()
-    maven {
-        url 'http://10.13.222.101:8080/artifactory/repo'
-    }
+}
+
+configurations {
+    querydslapt
 }
 
 dependencies {
@@ -53,13 +54,19 @@ dependencies {
             "io.springfox:springfox-swagger2:$swaggerVersion",
             "io.springfox:springfox-swagger-ui:$swaggerVersion",
             "org.hsqldb:hsqldb:$hsqldbVersion"
+
+    compile group: 'com.querydsl', name: 'querydsl-jpa', version: querydslVersion
+    compile group: 'com.querydsl', name: 'querydsl-apt', version: querydslVersion
+    compile group: 'com.querydsl', name: 'querydsl-core', version: querydslVersion
+
+    querydslapt "com.querydsl:querydsl-apt:$querydslVersion"
 }
 
 idea {
     module {
         downloadJavadoc = true
         downloadSources = true
-        sourceDirs += file('src/main/generated')
+        sourceDirs += file("src/generated/qdslapt")
     }
 }
 
@@ -70,18 +77,39 @@ bootRepackage {
 sourceSets {
     generated {
         java {
-            srcDirs = ['src/main/generated']
+            srcDirs = ["src/generated/qdslapt"]
         }
     }
-
     main {
         java {
-            srcDirs = ['src/main/java']
+            srcDirs += ['src/main/java']
         }
         resources {
-            srcDirs = ['src/main/resources']
+            srcDirs += ['src/main/resources']
         }
     }
+}
+
+task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
+    source = sourceSets.main.java
+    classpath = configurations.compile + configurations.querydslapt
+    options.compilerArgs = [
+            "-proc:only",
+            "-processor", "com.querydsl.apt.jpa.JPAAnnotationProcessor"
+    ]
+    destinationDir = sourceSets.generated.java.srcDirs.iterator().next()
+}
+
+compileJava {
+    dependsOn generateQueryDSL
+    source generateQueryDSL.destinationDir
+}
+
+compileGeneratedJava {
+    dependsOn generateQueryDSL
+    options.warnings = false
+    options.warnings = false
+    classpath += sourceSets.main.runtimeClasspath
 }
 
 artifacts {
@@ -89,12 +117,8 @@ artifacts {
     archives javadocJar
 }
 
-clean {
-    delete sourceSets.generated.java.srcDirs
-}
-
 war {
-    archiveName ='ROOT.war'
+    archiveName = 'ROOT.war'
     manifest {
         attributes("Implementation-Title": project.name,
                 "Implementation-Vendor": project.group,
@@ -110,6 +134,7 @@ javadoc {
     failOnError = false
 }
 
+//Code sytle, standard reports
 jacocoTestReport {
     reports {
         xml.enabled = true

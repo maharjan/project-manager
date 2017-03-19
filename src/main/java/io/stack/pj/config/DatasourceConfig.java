@@ -43,10 +43,6 @@ public class DatasourceConfig {
         dataSource.setPassword("");
         dataSource.setUrl("jdbc:hsqldb:file:~/hsqldb/project_manager_db;DB_CLOSE_ON_EXIT=FALSE");
         return dataSource;
-        // no need shutdown, EmbeddedDatabaseFactoryBean will take care of this
-//        return new EmbeddedDatabaseBuilder()
-//                .setType(EmbeddedDatabaseType.HSQL)
-//                .build();
     }
 
     @Bean(name = "pmEMF")

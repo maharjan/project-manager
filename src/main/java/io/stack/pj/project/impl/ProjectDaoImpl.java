@@ -46,4 +46,10 @@ public class ProjectDaoImpl implements ProjectDao {
     public void create(Projects project){
         projectRepository.save(project);
     }
+
+    @Override
+    @Transactional(propagation = Propagation.MANDATORY)
+    public Projects findByIdForUpdate(final Long projectId){
+        return projectRepository.findByIdForUpdate(projectId);
+    }
 }

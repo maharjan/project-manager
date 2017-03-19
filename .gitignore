@@ -1,3 +1,4 @@
+.gradle/
 gradle
 gradlew
 gradlew.bat
@@ -7,3 +8,4 @@ build/
 *.ipr
 *.iws
 *.yml
+generated/

@@ -20,4 +20,7 @@ public interface ProjectDao {
 
     @Transactional(propagation = Propagation.MANDATORY)
     void create(Projects project);
+
+    @Transactional(propagation = Propagation.MANDATORY)
+    Projects findByIdForUpdate(Long projectId);
 }

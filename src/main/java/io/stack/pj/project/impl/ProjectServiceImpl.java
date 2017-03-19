@@ -9,6 +9,7 @@ import io.stack.pj.project.resource.ProjectUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -53,5 +54,17 @@ class ProjectServiceImpl implements ProjectService {
         project.setUrl(request.getUrl());
 
         projectDao.create(project);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void updateProject(ProjectRequest request, Long projectId) {
+        Projects project = projectDao.findByIdForUpdate(projectId);
+
+    }
+
+    @Override
+    public void closeProject(Long projectId, String remarks) {
+
     }
 }
